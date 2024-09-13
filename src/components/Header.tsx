@@ -40,7 +40,6 @@ export default function Header() {
                   src="../assets/images/logos/light-logo.svg"
                   className="light-logo"
                   alt="Logo-light"
-                  style={{ display: "none" }}
                 />
               </Link>
             </div>
@@ -70,35 +69,19 @@ export default function Header() {
                 </button>
                 <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
-                    <button
-                      className="nav-link moon dark-layout"
-                      style={{ display: "flex" }}
-                    >
-                      <i
-                        className="ti ti-moon moon"
-                        style={{ display: "flex" }}
-                      ></i>
+                    <button className="nav-link moon dark-layout">
+                      <i className="ti ti-moon moon"></i>
                     </button>
-                    <button
-                      className="nav-link sun light-layout"
-                      style={{ display: "none" }}
-                    >
-                      <i
-                        className="ti ti-sun sun"
-                        style={{ display: "none" }}
-                      ></i>
+                    <button className="nav-link sun light-layout">
+                      <i className="ti ti-sun sun"></i>
                     </button>
                   </li>
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
                     <button
                       className="nav-link"
-                      style={{ display: "flex" }}
                       onClick={() => setIsSettingModalOpened(true)}
                     >
-                      <i
-                        className="icon ti ti-settings fs-7"
-                        style={{ display: "flex" }}
-                      ></i>
+                      <i className="icon ti ti-settings fs-7"></i>
                     </button>
                   </li>
                   <li className="nav-item dropdown">
@@ -714,7 +697,6 @@ export default function Header() {
                     className="light-logo"
                     width="180"
                     alt="modernize-img"
-                    style={{ display: "none" }}
                   />
                 </Link>
               </li>
@@ -756,35 +738,19 @@ export default function Header() {
                 </button>
                 <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
-                    <button
-                      className="nav-link moon dark-layout"
-                      style={{ display: "flex" }}
-                    >
-                      <i
-                        className="ti ti-moon moon"
-                        style={{ display: "flex" }}
-                      ></i>
+                    <button className="nav-link moon dark-layout">
+                      <i className="ti ti-moon moon"></i>
                     </button>
-                    <button
-                      className="nav-link sun light-layout"
-                      style={{ display: "none" }}
-                    >
-                      <i
-                        className="ti ti-sun sun"
-                        style={{ display: "none" }}
-                      ></i>
+                    <button className="nav-link sun light-layout">
+                      <i className="ti ti-sun sun"></i>
                     </button>
                   </li>
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
                     <button
                       className="nav-link"
-                      style={{ display: "flex" }}
                       onClick={() => setIsSettingModalOpened(true)}
                     >
-                      <i
-                        className="icon ti ti-settings fs-7"
-                        style={{ display: "flex" }}
-                      ></i>
+                      <i className="icon ti ti-settings fs-7"></i>
                     </button>
                   </li>
 
