@@ -1,391 +1,104 @@
-<div
-  className="offcanvas customizer offcanvas-end show"
-  tabindex="-1"
-  id="offcanvasExample"
-  aria-labelledby="offcanvasExampleLabel"
-  aria-modal="true"
-  role="dialog"
->
-  <div
-    className="d-flex align-items-center justify-content-between p-3 border-bottom"
-  >
-    <h4 className="offcanvas-title fw-semibold" id="offcanvasExampleLabel">
-      Settings
-    </h4>
-    <button
-      type="button"
-      className="btn-close"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
-  </div>
-  <div
-    className="offcanvas-body h-n80 simplebar-scrollable-y"
-    data-simplebar="init"
-  >
-    <div className="simplebar-wrapper" style="margin: -16px">
-      <div className="simplebar-height-auto-observer-wrapper">
-        <div className="simplebar-height-auto-observer"></div>
-      </div>
-      <div className="simplebar-mask">
-        <div className="simplebar-offset" style="right: 0px; bottom: 0px">
-          <div
-            className="simplebar-content-wrapper"
-            tabindex="0"
-            role="region"
-            aria-label="scrollable content"
-            style="height: 100%; overflow: hidden scroll"
-          >
-            <div className="simplebar-content" style="padding: 16px">
-              <h6 className="fw-semibold fs-4 mb-2">Theme</h6>
-
-              <div className="d-flex flex-row gap-3 customizer-box" role="group">
-                <input
-                  type="radio"
-                  className="btn-check light-layout"
-                  name="theme-layout"
-                  id="light-layout"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary rounded-2"
-                  for="light-layout"
-                >
-                  <i className="icon ti ti-brightness-up fs-7 me-2"></i>Light
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check dark-layout"
-                  name="theme-layout"
-                  id="dark-layout"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary rounded-2"
-                  for="dark-layout"
-                >
-                  <i className="icon ti ti-moon fs-7 me-2"></i>Dark
-                </label>
-              </div>
-
-              <h6 className="mt-5 fw-semibold fs-4 mb-2">Theme Direction</h6>
-              <div className="d-flex flex-row gap-3 customizer-box" role="group">
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="direction-l"
-                  id="ltr-layout"
-                  autocomplete="off"
-                />
-                <label className="btn p-9 btn-outline-primary" for="ltr-layout">
-                  <i className="icon ti ti-text-direction-ltr fs-7 me-2"></i>LTR
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="direction-l"
-                  id="rtl-layout"
-                  autocomplete="off"
-                />
-                <label className="btn p-9 btn-outline-primary" for="rtl-layout">
-                  <i className="icon ti ti-text-direction-rtl fs-7 me-2"></i>RTL
-                </label>
-              </div>
-
-              <h6 className="mt-5 fw-semibold fs-4 mb-2">Theme Colors</h6>
-
-              <div
-                className="d-flex flex-row flex-wrap gap-3 customizer-box color-pallete"
-                role="group"
-              >
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="color-theme-layout"
-                  id="Blue_Theme"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                  onclick="handleColorTheme('Blue_Theme')"
-                  for="Blue_Theme"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="BLUE_THEME"
-                >
-                  <div
-                    className="color-box rounded-circle d-flex align-items-center justify-content-center skin-1"
-                  >
-                    <i className="ti ti-check text-white d-flex icon fs-5"></i>
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="color-theme-layout"
-                  id="Aqua_Theme"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                  onclick="handleColorTheme('Aqua_Theme')"
-                  for="Aqua_Theme"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="AQUA_THEME"
-                >
-                  <div
-                    className="color-box rounded-circle d-flex align-items-center justify-content-center skin-2"
-                  >
-                    <i className="ti ti-check text-white d-flex icon fs-5"></i>
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="color-theme-layout"
-                  id="Purple_Theme"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                  onclick="handleColorTheme('Purple_Theme')"
-                  for="Purple_Theme"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="PURPLE_THEME"
-                >
-                  <div
-                    className="color-box rounded-circle d-flex align-items-center justify-content-center skin-3"
-                  >
-                    <i className="ti ti-check text-white d-flex icon fs-5"></i>
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="color-theme-layout"
-                  id="green-theme-layout"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                  onclick="handleColorTheme('Green_Theme')"
-                  for="green-theme-layout"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="GREEN_THEME"
-                >
-                  <div
-                    className="color-box rounded-circle d-flex align-items-center justify-content-center skin-4"
-                  >
-                    <i className="ti ti-check text-white d-flex icon fs-5"></i>
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="color-theme-layout"
-                  id="cyan-theme-layout"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                  onclick="handleColorTheme('Cyan_Theme')"
-                  for="cyan-theme-layout"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="CYAN_THEME"
-                >
-                  <div
-                    className="color-box rounded-circle d-flex align-items-center justify-content-center skin-5"
-                  >
-                    <i className="ti ti-check text-white d-flex icon fs-5"></i>
-                  </div>
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="color-theme-layout"
-                  id="orange-theme-layout"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
-                  onclick="handleColorTheme('Orange_Theme')"
-                  for="orange-theme-layout"
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="ORANGE_THEME"
-                >
-                  <div
-                    className="color-box rounded-circle d-flex align-items-center justify-content-center skin-6"
-                  >
-                    <i className="ti ti-check text-white d-flex icon fs-5"></i>
-                  </div>
-                </label>
-              </div>
-
-              <h6 className="mt-5 fw-semibold fs-4 mb-2">Layout Type</h6>
-              <div className="d-flex flex-row gap-3 customizer-box" role="group">
-                <div>
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="page-layout"
-                    id="vertical-layout"
-                    autocomplete="off"
-                  />
-                  <label
-                    className="btn p-9 btn-outline-primary"
-                    for="vertical-layout"
-                  >
-                    <i className="icon ti ti-layout-sidebar-right fs-7 me-2"></i
-                    >Vertical
-                  </label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="page-layout"
-                    id="horizontal-layout"
-                    autocomplete="off"
-                  />
-                  <label
-                    className="btn p-9 btn-outline-primary"
-                    for="horizontal-layout"
-                  >
-                    <i className="icon ti ti-layout-navbar fs-7 me-2"></i>Horizontal
-                  </label>
-                </div>
-              </div>
-
-              <h6 className="mt-5 fw-semibold fs-4 mb-2">Container Option</h6>
-
-              <div className="d-flex flex-row gap-3 customizer-box" role="group">
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="layout"
-                  id="boxed-layout"
-                  autocomplete="off"
-                />
-                <label className="btn p-9 btn-outline-primary" for="boxed-layout">
-                  <i className="icon ti ti-layout-distribute-vertical fs-7 me-2"></i
-                  >Boxed
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="layout"
-                  id="full-layout"
-                  autocomplete="off"
-                />
-                <label className="btn p-9 btn-outline-primary" for="full-layout">
-                  <i
-                    className="icon ti ti-layout-distribute-horizontal fs-7 me-2"
-                  ></i
-                  >Full
-                </label>
-              </div>
-
-              <h6 className="fw-semibold fs-4 mb-2 mt-5">Sidebar Type</h6>
-              <div className="d-flex flex-row gap-3 customizer-box" role="group">
-                <a href="javascript:void(0)" className="fullsidebar">
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="sidebar-type"
-                    id="full-sidebar"
-                    autocomplete="off"
-                  />
-                  <label className="btn p-9 btn-outline-primary" for="full-sidebar">
-                    <i className="icon ti ti-layout-sidebar-right fs-7 me-2"></i
-                    >Full
-                  </label>
-                </a>
-                <div>
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="sidebar-type"
-                    id="mini-sidebar"
-                    autocomplete="off"
-                  />
-                  <label className="btn p-9 btn-outline-primary" for="mini-sidebar">
-                    <i className="icon ti ti-layout-sidebar fs-7 me-2"></i>Collapse
-                  </label>
-                </div>
-              </div>
-
-              <h6 className="mt-5 fw-semibold fs-4 mb-2">Card With</h6>
-
-              <div className="d-flex flex-row gap-3 customizer-box" role="group">
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="card-layout"
-                  id="card-with-border"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary"
-                  for="card-with-border"
-                >
-                  <i className="icon ti ti-border-outer fs-7 me-2"></i>Border
-                </label>
-
-                <input
-                  type="radio"
-                  className="btn-check"
-                  name="card-layout"
-                  id="card-without-border"
-                  autocomplete="off"
-                />
-                <label
-                  className="btn p-9 btn-outline-primary"
-                  for="card-without-border"
-                >
-                  <i className="icon ti ti-border-none fs-7 me-2"></i>Shadow
-                </label>
-              </div>
-            </div>
-          </div>
+<div className="owl-carousel counter-carousel owl-theme">
+  <div className="item">
+    <div className="card border-0 zoom-in bg-primary-subtle shadow-none">
+      <div className="card-body">
+        <div className="text-center">
+          <img
+            src="./assets/images/svgs/icon-user-male.svg"
+            width="50"
+            height="50"
+            className="mb-3"
+            alt="modernize-img"
+          />
+          <p className="fw-semibold fs-3 text-primary mb-1">Employees</p>
+          <h5 className="fw-semibold text-primary mb-0">96</h5>
         </div>
       </div>
-      <div
-        className="simplebar-placeholder"
-        style="width: 330px; height: 1053px"
-      ></div>
     </div>
-    <div
-      className="simplebar-track simplebar-horizontal"
-      style="visibility: hidden"
-    >
-      <div
-        className="simplebar-scrollbar"
-        style="width: 0px; transform: translate3d(0px, 0px, 0px); display: none"
-      ></div>
+  </div>
+  <div className="item">
+    <div className="card border-0 zoom-in bg-warning-subtle shadow-none">
+      <div className="card-body">
+        <div className="text-center">
+          <img
+            src="./assets/images/svgs/icon-briefcase.svg"
+            width="50"
+            height="50"
+            className="mb-3"
+            alt="modernize-img"
+          />
+          <p className="fw-semibold fs-3 text-warning mb-1">Clients</p>
+          <h5 className="fw-semibold text-warning mb-0">3,650</h5>
+        </div>
+      </div>
     </div>
-    <div className="simplebar-track simplebar-vertical" style="visibility: visible">
-      <div
-        className="simplebar-scrollbar"
-        style="
-          height: 39px;
-          transform: translate3d(0px, 58px, 0px);
-          display: block;
-        "
-      ></div>
+  </div>
+  <div className="item">
+    <div className="card border-0 zoom-in bg-info-subtle shadow-none">
+      <div className="card-body">
+        <div className="text-center">
+          <img
+            src="./assets/images/svgs/icon-mailbox.svg"
+            width="50"
+            height="50"
+            className="mb-3"
+            alt="modernize-img"
+          />
+          <p className="fw-semibold fs-3 text-info mb-1">Projects</p>
+          <h5 className="fw-semibold text-info mb-0">356</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="item">
+    <div className="card border-0 zoom-in bg-danger-subtle shadow-none">
+      <div className="card-body">
+        <div className="text-center">
+          <img
+            src="./assets/images/svgs/icon-favorites.svg"
+            width="50"
+            height="50"
+            className="mb-3"
+            alt="modernize-img"
+          />
+          <p className="fw-semibold fs-3 text-danger mb-1">Events</p>
+          <h5 className="fw-semibold text-danger mb-0">696</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="item">
+    <div className="card border-0 zoom-in bg-success-subtle shadow-none">
+      <div className="card-body">
+        <div className="text-center">
+          <img
+            src="./assets/images/svgs/icon-speech-bubble.svg"
+            width="50"
+            height="50"
+            className="mb-3"
+            alt="modernize-img"
+          />
+          <p className="fw-semibold fs-3 text-success mb-1">Payroll</p>
+          <h5 className="fw-semibold text-success mb-0">$96k</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="item">
+    <div className="card border-0 zoom-in bg-info-subtle shadow-none">
+      <div className="card-body">
+        <div className="text-center">
+          <img
+            src="./assets/images/svgs/icon-connect.svg"
+            width="50"
+            height="50"
+            className="mb-3"
+            alt="modernize-img"
+          />
+          <p className="fw-semibold fs-3 text-info mb-1">Reports</p>
+          <h5 className="fw-semibold text-info mb-0">59</h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<div className="offcanvas-backdrop fade show"></div>

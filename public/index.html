@@ -1,24 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
 
-<html lang="en" dir="ltr" data-bs-theme="light" data-color-theme="Blue_Theme" data-layout="vertical"
-  data-boxed-layout="boxed" data-card="shadow">
+<html lang="en">
 <meta charset="utf-8" />
-<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+<link rel="icon" href="./favicon.ico" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#000000" />
 <meta name="description" content="Web site created using create-react-app" />
-<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+<link rel="apple-touch-icon" href="./logo192.png" />
+<link rel="manifest" href="./manifest.json" />
 <title>React App</title>
 
 <link rel="stylesheet" href="./assets/css/styles.css">
+<link rel="stylesheet" href="./assets/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
 
 </html>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="main-wrapper"></div>
+  <script src='./assets/js/jquery.min.js'></script>
+  <script src="./assets/js/owl.carousel.min.js"></script>
+  <script src="./assets/js/app.min.js"></script>
+  <script src="./assets/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    const settings = {
+      Layout: "vertical",
+      SidebarType: "full",
+      BoxedLayout: true,
+      Direction: "ltr",
+      Theme: "light",
+      ColorTheme: "Blue_Theme",
+      cardBorder: false,
+    };
+    const AdminSettings = {
+      AdminSettingsInit() {
+        this.ManageThemeLayout();
+        this.ManageSidebarType();
+        this.ManageBoxedLayout();
+        this.ManageDirectionLayout();
+        this.ManageDarkThemeLayout();
+        this.ManageColorThemeLayout();
+        this.ManageCardLayout();
+      },
+
+      ManageThemeLayout() {
+        const horizontalLayoutElement =
+          document.getElementById("horizontal-layout");
+        const verticalLayoutElement = document.getElementById("vertical-layout");
+
+        switch (settings.Layout) {
+          case "horizontal":
+            if (horizontalLayoutElement) {
+              horizontalLayoutElement.checked = true;
+            }
+            document.documentElement.setAttribute("data-layout", "horizontal");
+            break;
+          case "vertical":
+            if (verticalLayoutElement) {
+              verticalLayoutElement.checked = true;
+            }
+            document.documentElement.setAttribute("data-layout", "vertical");
+            break;
+          default:
+            break;
+        }
+      },
+
+      ManageSidebarType() {
+        switch (settings.SidebarType) {
+          case "full":
+            const fullSidebarElement = document.querySelector("#full-sidebar");
+            if (fullSidebarElement) {
+              fullSidebarElement.checked = true;
+            }
+            document.body.setAttribute("data-sidebartype", "full");
+
+            const setSidebarType = () => {
+              const width =
+                window.innerWidth > 0 ? window.innerWidth : screen.width;
+              if (width < 1300) {
+                document.body.setAttribute("data-sidebartype", "mini-sidebar");
+              } else {
+                document.body.setAttribute("data-sidebartype", "full");
+              }
+            };
+            window.addEventListener("DOMContentLoaded", setSidebarType);
+            window.addEventListener("resize", setSidebarType);
+            break;
+
+          case "mini-sidebar":
+            const miniSidebarElement = document.querySelector("#mini-sidebar");
+            if (miniSidebarElement) {
+              miniSidebarElement.checked = true;
+            }
+            document.body.setAttribute("data-sidebartype", "mini-sidebar");
+            break;
+
+          default:
+            break;
+        }
+      },
+
+      ManageBoxedLayout() {
+        const boxedLayoutElement = document.getElementById("boxed-layout");
+        const fullLayoutElement = document.getElementById("full-layout");
+
+        if (boxedLayoutElement) boxedLayoutElement.checked = true;
+        switch (settings.BoxedLayout) {
+          case true:
+            document.documentElement.setAttribute("data-boxed-layout", "boxed");
+            if (boxedLayoutElement) boxedLayoutElement.checked = true;
+            break;
+          case false:
+            document.documentElement.setAttribute("data-boxed-layout", "full");
+            if (fullLayoutElement) fullLayoutElement.checked = true;
+            break;
+          default:
+            break;
+        }
+      },
+
+      ManageDirectionLayout() {
+        const ltrLayoutElement = document.getElementById("ltr-layout");
+        const rtlLayoutElement = document.getElementById("rtl-layout");
+
+        switch (settings.Direction) {
+          case "ltr":
+            if (ltrLayoutElement) {
+              ltrLayoutElement.checked = true;
+            }
+            document.documentElement.setAttribute("dir", "ltr");
+            const offcanvasStart = document.querySelector(".offcanvas-start");
+            if (offcanvasStart) {
+              offcanvasStart.classList.toggle("offcanvas-end");
+              offcanvasStart.classList.remove("offcanvas-start");
+            }
+            break;
+          case "rtl":
+            document.documentElement.setAttribute("dir", "rtl");
+            const offcanvasEnd = document.querySelector(".offcanvas-end");
+            if (offcanvasEnd) {
+              offcanvasEnd.classList.toggle("offcanvas-start");
+              offcanvasEnd.classList.remove("offcanvas-end");
+            }
+            if (rtlLayoutElement) {
+              rtlLayoutElement.checked = true;
+            }
+            break;
+          default:
+            break;
+        }
+      },
+
+      ManageCardLayout() {
+        const cardWithoutBorderElement = document.getElementById(
+          "card-without-border"
+        );
+        const cardWithBorderElement = document.getElementById("card-with-border");
+
+        if (cardWithoutBorderElement) cardWithoutBorderElement.checked = true;
+        switch (settings.cardBorder) {
+          case true:
+            document.documentElement.setAttribute("data-card", "border");
+            if (cardWithBorderElement) cardWithBorderElement.checked = true;
+            break;
+          case false:
+            document.documentElement.setAttribute("data-card", "shadow");
+            if (cardWithoutBorderElement) cardWithoutBorderElement.checked = true;
+            break;
+          default:
+            break;
+        }
+      },
+
+      ManageDarkThemeLayout() {
+        const setTheme = (theme, hideElements, showElements, hideElements2) => {
+          document.documentElement.setAttribute("data-bs-theme", theme);
+          const themeLayoutElement = document.getElementById(`${theme}-layout`);
+          if (themeLayoutElement) {
+            themeLayoutElement.checked = true;
+          }
+
+          hideElements.forEach((el) =>
+            document
+              .querySelectorAll(`.${el}`)
+              .forEach((e) => (e.style.display = "none"))
+          );
+          showElements.forEach((el) =>
+            document
+              .querySelectorAll(`.${el}`)
+              .forEach((e) => (e.style.display = "flex"))
+          );
+          hideElements2.forEach((el) =>
+            document
+              .querySelectorAll(`.${el}`)
+              .forEach((e) => (e.style.display = "none"))
+          );
+        };
+
+        switch (settings.Theme) {
+          case "light":
+            setTheme("light", ["light-logo"], ["moon"], ["sun"]);
+            break;
+          case "dark":
+            setTheme("dark", ["dark-logo"], ["sun"], ["moon"]);
+            break;
+          default:
+            break;
+        }
+      },
+
+      ManageColorThemeLayout() {
+        const { ColorTheme } = settings;
+        const colorThemeElement = document.getElementById(ColorTheme);
+
+        if (colorThemeElement) {
+          document.documentElement.setAttribute("data-color-theme", ColorTheme);
+          colorThemeElement.checked = true;
+        }
+      },
+    };
+  </script>
+  <script>
+    document.addEventListener("init", () => {
+      AdminSettings.AdminSettingsInit();
+      handleTheme()
+    }, false)
+
+    document.addEventListener("home", () => {
+      $(".counter-carousel").owlCarousel({
+        loop: true,
+        rtl: true,
+        margin: 30,
+        mouseDrag: true,
+
+        nav: false,
+
+        responsive: {
+          0: {
+            items: 2,
+            loop: true,
+          },
+          576: {
+            items: 2,
+            loop: true,
+          },
+          768: {
+            items: 3,
+            loop: true,
+          },
+          1200: {
+            items: 5,
+            loop: true,
+          },
+          1400: {
+            items: 6,
+            loop: true,
+          },
+        },
+      });
+      $("#zero_config").DataTable();
+    })
+  </script>
+  <script>
+    function handleTheme() {
+      function setThemeAttributes(
+        theme,
+        darkDisplay,
+        lightDisplay,
+        sunDisplay,
+        moonDisplay
+      ) {
+        document.documentElement.setAttribute("data-bs-theme", theme);
+        const themeLayoutElement = document.getElementById(`${theme}-layout`);
+        if (themeLayoutElement) {
+          themeLayoutElement.checked = true;
+        }
+
+        document
+          .querySelectorAll(`.${darkDisplay}`)
+          .forEach((el) => (el.style.display = "none"));
+        document
+          .querySelectorAll(`.${lightDisplay}`)
+          .forEach((el) => (el.style.display = "flex"));
+        document
+          .querySelectorAll(`.${sunDisplay}`)
+          .forEach((el) => (el.style.display = "none"));
+        document
+          .querySelectorAll(`.${moonDisplay}`)
+          .forEach((el) => (el.style.display = "flex"));
+      }
+
+      document.querySelectorAll(".dark-layout").forEach((element) => {
+        element.addEventListener("click", () =>
+          setThemeAttributes("dark", "dark-logo", "light-logo", "moon", "sun")
+        );
+      });
+
+      document.querySelectorAll(".light-layout").forEach((element) => {
+        element.addEventListener("click", () =>
+          setThemeAttributes("light", "light-logo", "dark-logo", "sun", "moon")
+        );
+      });
+    }
+  </script>
 </body>
 
 </html>

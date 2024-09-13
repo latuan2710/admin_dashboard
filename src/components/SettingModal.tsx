@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { useEffect } from "react";
 
 interface SettingModalProps {
   setIsSettingModalOpened: (theme: boolean) => void;
@@ -8,51 +7,14 @@ interface SettingModalProps {
 export default function SettingModal({
   setIsSettingModalOpened,
 }: SettingModalProps) {
-  const themeContext = useContext(ThemeContext);
+  useEffect(() => {
+    const event = new Event("setting");
+    document.dispatchEvent(event);
+  }, []);
 
-  if (!themeContext) {
-    throw new Error("ThemeContext must be used within a ThemeProvider");
+  function handleColorTheme(e: string) {
+    document.documentElement.setAttribute("data-color-theme", e);
   }
-
-  const { theme, setTheme } = themeContext;
-  const { themeDirection, setThemeDirection } = themeContext;
-  const { themeColor, setThemeColor } = themeContext;
-  const { layoutType, setLayoutType } = themeContext;
-  const { containerOption, setContainerOption } = themeContext;
-  const { sidebarType, setSidebarType } = themeContext;
-  const { cardWith, setCardWith } = themeContext;
-
-  const handleThemeDirection = (dir: string) => {
-    document.querySelector("html")?.setAttribute("dir", dir);
-    setThemeDirection(dir);
-  };
-
-  const handleColorTheme = (colorTheme: string) => {
-    document
-      .querySelector("html")
-      ?.setAttribute("data-color-theme", colorTheme);
-    setThemeColor(colorTheme);
-  };
-
-  const handleLayoutType = (type: string) => {
-    document.querySelector("html")?.setAttribute("data-layout", type);
-    setLayoutType(type);
-  };
-
-  const handleContainerOption = (option: string) => {
-    document.querySelector("html")?.setAttribute("data-boxed-layout", option);
-    setContainerOption(option);
-  };
-
-  const handleSidebarType = (type: string) => {
-    document.querySelector("body")?.setAttribute("data-sidebartype", type);
-    setSidebarType(type);
-  };
-
-  const handleCardWith = (type: string) => {
-    document.querySelector("html")?.setAttribute("data-card", type);
-    setCardWith(type);
-  };
 
   return (
     <>
@@ -109,12 +71,10 @@ export default function SettingModal({
                         className="btn-check light-layout"
                         name="theme-layout"
                         id="light-layout"
-                        checked={theme === "light"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary rounded-2"
                         htmlFor="light-layout"
-                        onClick={() => setTheme("light")}
                       >
                         <i className="icon ti ti-brightness-up fs-7 me-2"></i>
                         Light
@@ -125,12 +85,10 @@ export default function SettingModal({
                         className="btn-check dark-layout"
                         name="theme-layout"
                         id="dark-layout"
-                        checked={theme === "dark"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary rounded-2"
                         htmlFor="dark-layout"
-                        onClick={() => setTheme("dark")}
                       >
                         <i className="icon ti ti-moon fs-7 me-2"></i>Dark
                       </label>
@@ -148,12 +106,10 @@ export default function SettingModal({
                         className="btn-check"
                         name="direction-l"
                         id="ltr-layout"
-                        checked={themeDirection === "ltr"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary"
                         htmlFor="ltr-layout"
-                        onClick={() => handleThemeDirection("ltr")}
                       >
                         <i className="icon ti ti-text-direction-ltr fs-7 me-2"></i>
                         LTR
@@ -164,12 +120,10 @@ export default function SettingModal({
                         className="btn-check"
                         name="direction-l"
                         id="rtl-layout"
-                        checked={themeDirection === "rtl"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary"
                         htmlFor="rtl-layout"
-                        onClick={() => handleThemeDirection("rtl")}
                       >
                         <i className="icon ti ti-text-direction-rtl fs-7 me-2"></i>
                         RTL
@@ -187,7 +141,7 @@ export default function SettingModal({
                         className="btn-check"
                         name="color-theme-layout"
                         id="Blue_Theme"
-                        checked={themeColor === "Blue_Theme"}
+                        autoComplete="off"
                       />
                       <label
                         className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
@@ -207,7 +161,7 @@ export default function SettingModal({
                         className="btn-check"
                         name="color-theme-layout"
                         id="Aqua_Theme"
-                        checked={themeColor === "Aqua_Theme"}
+                        autoComplete="off"
                       />
                       <label
                         className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
@@ -227,7 +181,7 @@ export default function SettingModal({
                         className="btn-check"
                         name="color-theme-layout"
                         id="Purple_Theme"
-                        checked={themeColor === "Purple_Theme"}
+                        autoComplete="off"
                       />
                       <label
                         className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
@@ -247,7 +201,7 @@ export default function SettingModal({
                         className="btn-check"
                         name="color-theme-layout"
                         id="green-theme-layout"
-                        checked={themeColor === "Green_Theme"}
+                        autoComplete="off"
                       />
                       <label
                         className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
@@ -267,7 +221,7 @@ export default function SettingModal({
                         className="btn-check"
                         name="color-theme-layout"
                         id="cyan-theme-layout"
-                        checked={themeColor === "Cyan_Theme"}
+                        autoComplete="off"
                       />
                       <label
                         className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
@@ -287,7 +241,7 @@ export default function SettingModal({
                         className="btn-check"
                         name="color-theme-layout"
                         id="orange-theme-layout"
-                        checked={themeColor === "Orange_Theme"}
+                        autoComplete="off"
                       />
                       <label
                         className="btn p-9 btn-outline-primary d-flex align-items-center justify-content-center"
@@ -314,12 +268,10 @@ export default function SettingModal({
                           className="btn-check"
                           name="page-layout"
                           id="vertical-layout"
-                          checked={layoutType === "vertical"}
                         />
                         <label
                           className="btn p-9 btn-outline-primary"
                           htmlFor="vertical-layout"
-                          onClick={() => handleLayoutType("vertical")}
                         >
                           <i className="icon ti ti-layout-sidebar-right fs-7 me-2"></i>
                           Vertical
@@ -331,12 +283,10 @@ export default function SettingModal({
                           className="btn-check"
                           name="page-layout"
                           id="horizontal-layout"
-                          checked={layoutType === "horizontal"}
                         />
                         <label
                           className="btn p-9 btn-outline-primary"
                           htmlFor="horizontal-layout"
-                          onClick={() => handleLayoutType("horizontal")}
                         >
                           <i className="icon ti ti-layout-navbar fs-7 me-2"></i>
                           Horizontal
@@ -357,12 +307,10 @@ export default function SettingModal({
                         className="btn-check"
                         name="layout"
                         id="boxed-layout"
-                        checked={containerOption === "boxed"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary"
                         htmlFor="boxed-layout"
-                        onClick={() => handleContainerOption("boxed")}
                       >
                         <i className="icon ti ti-layout-distribute-vertical fs-7 me-2"></i>
                         Boxed
@@ -373,12 +321,10 @@ export default function SettingModal({
                         className="btn-check"
                         name="layout"
                         id="full-layout"
-                        checked={containerOption === "full"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary"
                         htmlFor="full-layout"
-                        onClick={() => handleContainerOption("full")}
                       >
                         <i className="icon ti ti-layout-distribute-horizontal fs-7 me-2"></i>
                         Full
@@ -396,12 +342,10 @@ export default function SettingModal({
                           className="btn-check"
                           name="sidebar-type"
                           id="full-sidebar"
-                          checked={sidebarType === "full"}
                         />
                         <label
                           className="btn p-9 btn-outline-primary"
                           htmlFor="full-sidebar"
-                          onClick={() => handleSidebarType("full")}
                         >
                           <i className="icon ti ti-layout-sidebar-right fs-7 me-2"></i>
                           Full
@@ -413,12 +357,10 @@ export default function SettingModal({
                           className="btn-check"
                           name="sidebar-type"
                           id="mini-sidebar"
-                          checked={sidebarType === "mini-sidebar"}
                         />
                         <label
                           className="btn p-9 btn-outline-primary"
                           htmlFor="mini-sidebar"
-                          onClick={() => handleSidebarType("mini-sidebar")}
                         >
                           <i className="icon ti ti-layout-sidebar fs-7 me-2"></i>
                           Collapse
@@ -437,12 +379,10 @@ export default function SettingModal({
                         className="btn-check"
                         name="card-layout"
                         id="card-with-border"
-                        checked={cardWith === "border"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary"
                         htmlFor="card-with-border"
-                        onClick={() => handleCardWith("border")}
                       >
                         <i className="icon ti ti-border-outer fs-7 me-2"></i>
                         Border
@@ -453,12 +393,10 @@ export default function SettingModal({
                         className="btn-check"
                         name="card-layout"
                         id="card-without-border"
-                        checked={cardWith === "shadow"}
                       />
                       <label
                         className="btn p-9 btn-outline-primary"
                         htmlFor="card-without-border"
-                        onClick={() => handleCardWith("shadow")}
                       >
                         <i className="icon ti ti-border-none fs-7 me-2"></i>
                         Shadow
@@ -502,8 +440,8 @@ export default function SettingModal({
         </div>
       </div>
       <div
-        className="offcanvas-backdrop fade show"
         onClick={() => setIsSettingModalOpened(false)}
+        className="offcanvas-backdrop fade show"
       ></div>
     </>
   );

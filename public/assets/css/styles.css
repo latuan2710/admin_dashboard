@@ -38677,3 +38677,11 @@ body .connect-sorting-content {
   .shop-colors-item.shop-colors-7 {
   background-color: pink;
 }
+
+.text-center img {
+  display: inline-block !important;
+}
+
+.slick-slide .item:has(.card-body) {
+  padding: 0 10px;
+}

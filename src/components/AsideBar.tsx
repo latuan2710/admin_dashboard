@@ -1,30 +1,25 @@
 /* eslint-disable jsx-a11y/role-supports-aria-props */
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 export default function AsideBar() {
-  const themeContext = useContext(ThemeContext);
   return (
     <aside className="left-sidebar with-vertical">
       <div>
         <div className="brand-logo d-flex align-items-center justify-content-between">
-          <a href="../main/index.html" className="text-nowrap logo-img">
-            {themeContext?.theme === "light" ? (
-              <img
-                src="./assets/images/logos/dark-logo.svg"
-                className="dark-logo"
-                alt="Logo-Dark"
-                style={{ display: "flex" }}
-              />
-            ) : (
-              <img
-                src="./assets/images/logos/light-logo.svg"
-                className="light-logo"
-                alt="Logo-light"
-                style={{ display: "flex" }}
-              />
-            )}
-          </a>
+          <Link to="/" className="text-nowrap logo-img">
+            <img
+              src="./assets/images/logos/dark-logo.svg"
+              className="dark-logo"
+              alt="Logo-Dark"
+              style={{ display: "flex" }}
+            />
+            <img
+              src="./assets/images/logos/light-logo.svg"
+              className="light-logo"
+              alt="Logo-light"
+              style={{ display: "none" }}
+            />
+          </Link>
           <button className="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
             <i className="ti ti-x"></i>
           </button>
@@ -55,9 +50,9 @@ export default function AsideBar() {
                         <span className="hide-menu">Home</span>
                       </li>
                       <li className="sidebar-item">
-                        <a
+                        <Link
                           className="sidebar-link active"
-                          href="../main/index.html"
+                          to="/"
                           id="get-url"
                           aria-expanded="false"
                         >
@@ -65,19 +60,19 @@ export default function AsideBar() {
                             <i className="ti ti-aperture"></i>
                           </span>
                           <span className="hide-menu">Modern</span>
-                        </a>
+                        </Link>
                       </li>
                       <li className="sidebar-item">
-                        <a
+                        <Link
                           className="sidebar-link"
-                          href="../main/index2.html"
+                          to="/test"
                           aria-expanded="false"
                         >
                           <span>
                             <i className="ti ti-shopping-cart"></i>
                           </span>
                           <span className="hide-menu">eCommerce</span>
-                        </a>
+                        </Link>
                       </li>
                       <li className="sidebar-item">
                         <a

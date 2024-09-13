@@ -1,41 +1,20 @@
-/* eslint-disable jsx-a11y/role-supports-aria-props */
-import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import SettingModal from "./SettingModal";
 
 export default function Header() {
-  const themeContext = useContext(ThemeContext);
-
-  if (!themeContext) {
-    throw new Error("ThemeContext must be used within a ThemeProvider");
-  }
-
-  const { theme, setTheme } = themeContext;
-  const { sidebarType, setSidebarType } = themeContext;
   const [isSettingModalOpened, setIsSettingModalOpened] = useState(false);
 
-  useEffect(() => {
-    if (theme === "dark") {
-      document.querySelector("html")?.setAttribute("data-bs-theme", "dark");
-    } else {
-      document.querySelector("html")?.setAttribute("data-bs-theme", "light");
-    }
-  }, [theme]);
+  const handleSidebar = () => {
+    let type = document.body.getAttribute("data-sidebartype");
 
-  const handleSidebarType = () => {
-    if (sidebarType === "full") {
-      document
-        .querySelector("body")
-        ?.setAttribute("data-sidebartype", "mini-sidebar");
-      setSidebarType("mini-sidebar");
-    } else {
-      document.querySelector("body")?.setAttribute("data-sidebartype", "full");
-      setSidebarType("full");
-    }
+    if (type === "full")
+      document.body.setAttribute("data-sidebartype", "mini-sidebar");
+    else document.body.setAttribute("data-sidebartype", "full");
   };
 
   return (
-    <div className="page-wrapper">
+    <>
       <header className="topbar">
         <div className="with-vertical">
           <nav className="navbar navbar-expand-lg p-0">
@@ -44,29 +23,26 @@ export default function Header() {
                 <button
                   className="nav-link sidebartoggler"
                   id="headerCollapse"
-                  onClick={handleSidebarType}
+                  onClick={handleSidebar}
                 >
                   <i className="ti ti-menu-2"></i>
                 </button>
               </li>
             </ul>
             <div className="d-block d-lg-none py-4">
-              <a href="../main/index.html" className="text-nowrap logo-img">
-                {theme === "dark" ? (
-                  <img
-                    src="../assets/images/logos/dark-logo.svg"
-                    className="dark-logo"
-                    alt="Logo-Dark"
-                  />
-                ) : (
-                  <img
-                    src="../assets/images/logos/light-logo.svg"
-                    className="light-logo"
-                    alt="Logo-light"
-                    style={{ display: "none" }}
-                  />
-                )}
-              </a>
+              <Link to="/" className="text-nowrap logo-img">
+                <img
+                  src="../assets/images/logos/dark-logo.svg"
+                  className="dark-logo"
+                  alt="Logo-Dark"
+                />
+                <img
+                  src="../assets/images/logos/light-logo.svg"
+                  className="light-logo"
+                  alt="Logo-light"
+                  style={{ display: "none" }}
+                />
+              </Link>
             </div>
             <button
               className="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0"
@@ -94,35 +70,30 @@ export default function Header() {
                 </button>
                 <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
-                    {theme === "light" ? (
-                      <button
-                        className="nav-link moon dark-layout"
+                    <button
+                      className="nav-link moon dark-layout"
+                      style={{ display: "flex" }}
+                    >
+                      <i
+                        className="ti ti-moon moon"
                         style={{ display: "flex" }}
-                        onClick={() => setTheme("dark")}
-                      >
-                        <i
-                          className="ti ti-moon moon"
-                          style={{ display: "flex" }}
-                        ></i>
-                      </button>
-                    ) : (
-                      <button
-                        className="nav-link sun light-layout"
-                        style={{ display: "flex" }}
-                        onClick={() => setTheme("light")}
-                      >
-                        <i
-                          className="ti ti-sun sun"
-                          style={{ display: "flex" }}
-                        ></i>
-                      </button>
-                    )}
+                      ></i>
+                    </button>
+                    <button
+                      className="nav-link sun light-layout"
+                      style={{ display: "none" }}
+                    >
+                      <i
+                        className="ti ti-sun sun"
+                        style={{ display: "none" }}
+                      ></i>
+                    </button>
                   </li>
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
                     <button
-                      onClick={() => setIsSettingModalOpened(true)}
-                      className="nav-link sun light-layout"
+                      className="nav-link"
                       style={{ display: "flex" }}
+                      onClick={() => setIsSettingModalOpened(true)}
                     >
                       <i
                         className="icon ti ti-settings fs-7"
@@ -332,7 +303,6 @@ export default function Header() {
               </div>
             </div>
           </nav>
-
           <div
             className="offcanvas offcanvas-end"
             data-bs-scroll="true"
@@ -732,33 +702,31 @@ export default function Header() {
                 </button>
               </li>
               <li className="nav-item d-none d-xl-block">
-                <a href="../main/index.html" className="text-nowrap nav-link">
-                  {theme === "light" ? (
-                    <img
-                      src="../assets/images/logos/dark-logo.svg"
-                      className="dark-logo"
-                      width="180"
-                      alt="modernize-img"
-                    />
-                  ) : (
-                    <img
-                      src="../assets/images/logos/light-logo.svg"
-                      className="light-logo"
-                      width="180"
-                      alt="modernize-img"
-                    />
-                  )}
-                </a>
+                <Link to="/" className="text-nowrap nav-link">
+                  <img
+                    src="../assets/images/logos/dark-logo.svg"
+                    className="dark-logo"
+                    width="180"
+                    alt="modernize-img"
+                  />
+                  <img
+                    src="../assets/images/logos/light-logo.svg"
+                    className="light-logo"
+                    width="180"
+                    alt="modernize-img"
+                    style={{ display: "none" }}
+                  />
+                </Link>
               </li>
             </ul>
             <div className="d-block d-xl-none">
-              <a href="../main/index.html" className="text-nowrap nav-link">
+              <Link to="/" className="text-nowrap nav-link">
                 <img
                   src="../assets/images/logos/dark-logo.svg"
                   width="180"
                   alt="modernize-img"
                 />
-              </a>
+              </Link>
             </div>
             <button
               className="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0"
@@ -788,35 +756,30 @@ export default function Header() {
                 </button>
                 <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
-                    {theme === "light" ? (
-                      <button
-                        className="nav-link moon dark-layout"
+                    <button
+                      className="nav-link moon dark-layout"
+                      style={{ display: "flex" }}
+                    >
+                      <i
+                        className="ti ti-moon moon"
                         style={{ display: "flex" }}
-                        onClick={() => setTheme("dark")}
-                      >
-                        <i
-                          className="ti ti-moon moon"
-                          style={{ display: "flex" }}
-                        ></i>
-                      </button>
-                    ) : (
-                      <button
-                        className="nav-link sun light-layout"
-                        style={{ display: "flex" }}
-                        onClick={() => setTheme("light")}
-                      >
-                        <i
-                          className="ti ti-sun sun"
-                          style={{ display: "flex" }}
-                        ></i>
-                      </button>
-                    )}
+                      ></i>
+                    </button>
+                    <button
+                      className="nav-link sun light-layout"
+                      style={{ display: "none" }}
+                    >
+                      <i
+                        className="ti ti-sun sun"
+                        style={{ display: "none" }}
+                      ></i>
+                    </button>
                   </li>
                   <li className="nav-item nav-icon-hover-bg rounded-circle">
                     <button
-                      onClick={() => setIsSettingModalOpened(true)}
-                      className="nav-link sun light-layout"
+                      className="nav-link"
                       style={{ display: "flex" }}
+                      onClick={() => setIsSettingModalOpened(true)}
                     >
                       <i
                         className="icon ti ti-settings fs-7"
@@ -1032,6 +995,6 @@ export default function Header() {
       {isSettingModalOpened && (
         <SettingModal setIsSettingModalOpened={setIsSettingModalOpened} />
       )}
-    </div>
+    </>
   );
 }
